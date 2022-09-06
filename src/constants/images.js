@@ -21,7 +21,7 @@ import html from '../assets/html.png';
 import api from '../assets/api.png';
 import sass from '../assets/sass.png';
 
-export default {
+const images = {
   logo,
   profile,
   circle,
@@ -43,5 +43,6 @@ export default {
   javascript,
   html,
   css,
-  api
+  api,
 };
+export default images
