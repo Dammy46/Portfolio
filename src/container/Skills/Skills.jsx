@@ -8,37 +8,37 @@ const Skills = () => {
   const skills = [
     {
       name: 'Html',
-      bgColor: '',
+      bgColor: '#bc42002b',
       icon: images.html,
     },
     {
       name: 'Css',
-      bgColor: '',
+      bgColor: '#01619a4a',
       icon: images.css,
     },
     {
       name: 'Javascript',
-      bgColor: '',
+      bgColor: '#bb9e054d',
       icon: images.javascript,
     },
     {
       name: 'Api',
-      bgColor: '',
+      bgColor: '#7e878f45',
       icon: images.api,
     },
     {
       name: 'Redux',
-      bgColor: '',
+      bgColor: '#7a54bc4a',
       icon: images.redux,
     },
     {
       name: 'React',
-      bgColor: '',
+      bgColor: '#94dfe045',
       icon: images.react,
     },
     {
       name: 'Sass',
-      bgColor: '',
+      bgColor: '#f0629236',
       icon: images.sass,
     },
   ];
@@ -101,9 +101,12 @@ const Skills = () => {
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.5 }}
               className="app__skills-item app__flex"
-              key={index + 'skill'}
+              key={Math.random() + skill}
             >
-              <div className="app__flex" style={{}}>
+              <div
+                className="app__flex"
+                style={{ backgroundColor: skill.bgColor }}
+              >
                 <img src={skill.icon} alt="icon" />
               </div>
               <p className="p-text">{skill.name}</p>
@@ -141,7 +144,6 @@ const Skills = () => {
                     </ReactTooltip>
                   </>
                 ))}
-     
               </motion.div>
             </motion.div>
           ))}

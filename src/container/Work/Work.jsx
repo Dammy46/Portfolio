@@ -34,34 +34,34 @@ const Work = () => {
       img: images.calculator,
       codeLink: 'https://github.com/Dammy46/Calculator',
     },
-    {
-      title: 'Cloned website',
-      description: 'A basic HTML/CSS/Javascript webpage',
-      projectLink: 'https://dammy46.github.io/Interior',
-      img: images.interior,
-      codeLink: 'https://github.com/Dammy46/Interior',
-    },
-    {
-      title: 'Design Buddy',
-      description: 'React Project',
-      projectLink: 'https://d3signbuddy.netlify.app/',
-      img: images.designBuddy,
-      codeLink: 'https://github.com/Dammy46/design_buddy',
-    },
-    {
-      title: 'Simon Game',
-      description: 'Javascript Project',
-      projectLink: 'https://dammy46.github.io/Simon-Game/',
-      img: images.simon,
-      codeLink: 'https://github.com/Dammy46/Simon-Game',
-    },
-    {
-      title: 'Note Application',
-      description: 'React Project',
-      projectLink: 'https://dreamy-dodol-8f2817.netlify.app/',
-      img: images.note,
-      codeLink: 'https://github.com/Dammy46/Note_demo',
-    },
+    // {
+    //   title: 'Cloned website',
+    //   description: 'A basic HTML/CSS/Javascript webpage',
+    //   projectLink: 'https://dammy46.github.io/Interior',
+    //   img: images.interior,
+    //   codeLink: 'https://github.com/Dammy46/Interior',
+    // },
+    // {
+    //   title: 'Design Buddy',
+    //   description: 'React Project',
+    //   projectLink: 'https://d3signbuddy.netlify.app/',
+    //   img: images.designBuddy,
+    //   codeLink: 'https://github.com/Dammy46/design_buddy',
+    // },
+    // {
+    //   title: 'Simon Game',
+    //   description: 'Javascript Project',
+    //   projectLink: 'https://dammy46.github.io/Simon-Game/',
+    //   img: images.simon,
+    //   codeLink: 'https://github.com/Dammy46/Simon-Game',
+    // },
+    // {
+    //   title: 'Note Application',
+    //   description: 'React Project',
+    //   projectLink: 'https://dreamy-dodol-8f2817.netlify.app/',
+    //   img: images.note,
+    //   codeLink: 'https://github.com/Dammy46/Note_demo',
+    // },
   ];
   return (
     <>
