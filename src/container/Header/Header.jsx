@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.scss';
 import { motion } from 'framer-motion';
 import { images } from '../../constants';
-import {AppWrap} from '../../wrapper'
+import { AppWrap } from '../../wrapper';
 const Header = () => {
   const scaleVariant = {
     whileInView: {
@@ -18,7 +18,7 @@ const Header = () => {
   const __Redux = images.redux;
   const __Javascript = images.javascript;
   return (
-    <div  className="app__header app__flex">
+    <div className="app__header app__flex">
       <motion.div
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
@@ -28,7 +28,7 @@ const Header = () => {
           <div className="badge-cmp app__flex">
             <span>👋</span>
             <div style={{ marginLeft: 20 }}>
-              <div className="p-text">Hello, i am</div>
+              <div className="p-text">Hello, I am</div>
               <h1 className="head-text">Abdulzobur</h1>
             </div>
           </div>
