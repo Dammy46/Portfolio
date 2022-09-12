@@ -21,6 +21,7 @@ import html from '../assets/html.png';
 import api from '../assets/api.png';
 import sass from '../assets/sass.png';
 import email from '../assets/email.png';
+import phone from '../assets/mobile.png';
 
 const images = {
   logo,
@@ -45,6 +46,7 @@ const images = {
   html,
   css,
   api,
-  email
+  email,
+  phone
 };
 export default images
