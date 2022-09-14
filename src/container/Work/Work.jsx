@@ -104,7 +104,7 @@ const Work = () => {
     setPageCount(Math.ceil(works.length / itemsPerPage));
 
     //eslint-disable-next-line
-  }, []);
+  }, [itemOffset, itemsPerPage]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % works.length;
@@ -180,6 +180,7 @@ const Work = () => {
         containerClassName="app__work-paginate"
         pageClassName="app__work-paginate_li"
         activeClassName="app__work-paginate_actice"
+
       />
     </>
   );
