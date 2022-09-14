@@ -21,7 +21,11 @@ import html from '../assets/html.png';
 import api from '../assets/api.png';
 import sass from '../assets/sass.png';
 import email from '../assets/email.png';
+
 import slack from '../assets/slack.webp';
+
+import phone from '../assets/mobile.png';
+
 const images = {
   logo,
   profile,
@@ -47,5 +51,6 @@ const images = {
   api,
   email,
   slack,
+  phone
 };
 export default images;
