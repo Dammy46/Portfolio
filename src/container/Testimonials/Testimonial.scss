@@ -12,6 +12,7 @@
   border-radius: 15px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  margin-top: 1rem;
 
   img {
     width: 100px;
@@ -63,35 +64,35 @@
     margin-top: 5px;
   }
   @media screen and (max-width: 600px) {
-   padding: 0 1rem;
+    padding: 0 1rem;
   }
 }
 
-.app__testimonial-btns{
+.app__testimonial-btns {
   flex-direction: row;
   margin-top: 1rem;
 
-  div{
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   background-color: var(--white-color);
-   margin: 1rem;
-   transition: all .3s ease-in-out;
+  div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--white-color);
+    margin: 1rem;
+    transition: all 0.3s ease-in-out;
 
-   svg{
+    svg {
       width: 20px;
       height: 20px;
       color: var(--secondary-color);
-   }
-   &:hover{
+    }
+    &:hover {
       background-color: var(--secondary-color);
 
-      svg{
-         color: var(--white-color);
+      svg {
+        color: var(--white-color);
       }
-   }
-  } 
+    }
+  }
 }
 
 .app__testimonial-brands {
@@ -100,7 +101,7 @@
   margin-top: 2rem;
 
   div {
-    width: 150px;
+    width: 100px;
     margin: 1.5rem;
 
     img {

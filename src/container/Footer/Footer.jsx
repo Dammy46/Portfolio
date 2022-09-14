@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser'
 import './Footer.scss';
 import { images } from '../../constants';
 import { AppWrap } from '../../wrapper';
+import Swal from 'sweetalert2';
 const Footer = () => {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const form = useRef();
+
+    const sendEmail = (e) => {
+      e.preventDefault();
+
+      emailjs
+        .sendForm(
+          'service_chgnc5j',
+          'template_3qxyl1i',
+          form.current,
+          'uJmijd7_EEC8yYPmo'
+        )
+        .then(
+          (result) => {
+            Swal.fire({
+              icon: 'success',
+              text: 'successful',
+            });
+          },
+          (error) => {
+            console.log(error.text);
+          }
+      );
+      e.target.reset();
+    };
   return (
     <>
       <h2 className="head-text">Take a coffee & chat with me</h2>
@@ -22,49 +48,49 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      {isFormSubmitted === false ? (
-        <div className="app__footer-form app__flex">
-          <div className="app__flex app__inputs">
-            <input
-              type="text"
-              name="name"
-              className="p-text"
-              placeholder="Your Name"
-            />
-            <input
-              type="email"
-              name="email"
-              className="p-text"
-              placeholder="Email Address"
-            />
 
-            <select name="subject" id="">
-              <option defaultValue disabled selected>
-                Subject (optional)
-              </option>
-              <option value="">React</option>
-              <option value="">React</option>
-              <option value="">React</option>
-            </select>
-          </div>
-          <div className="app__flex">
-            <textarea
-              className="p-text"
-              name="message"
-              placeholder="Your message here"
-            />
-          </div>
-          <button
-            type="button"
+      <form
+        className="app__footer-form app__flex"
+        ref={form}
+        onSubmit={sendEmail}
+      >
+        <div className="app__flex app__inputs">
+          <input
+            type="text"
+            name="user_name"
             className="p-text"
-            onClick={() => setIsFormSubmitted(true)}
-          >
-            {'Send message'}
-          </button>
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            name="user_name"
+            className="p-text"
+            placeholder="Email Address"
+            required
+          />
+
+          <select name="subject" id="">
+            <option defaultValue disabled selected>
+              Subject (optional)
+            </option>
+            <option value="React">Web Design</option>
+            <option value="Front-End Development">Front-End Development</option>
+            <option value="Animation">Animation</option>
+          </select>
         </div>
-      ) : (
-        <h2>Thank you for getting in touch.</h2>
-      )}
+        <div className="app__flex">
+          <textarea
+            className="p-text"
+            name="message"
+            placeholder="Your message here"
+            required
+          />
+        </div>
+        <button type="submit" className="p-text">
+          {'Send message'}
+        </button>
+      </form>
     </>
   );
 };

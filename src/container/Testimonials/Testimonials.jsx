@@ -11,32 +11,46 @@ const Testimonial = () => {
       company: 'Crenet',
       img: 'https://avatars.githubusercontent.com/u/43177042?s=100&v=4',
       feedback:
-        'I am a Web Design with a passion for bulding beautiful and functional web application',
+        'I Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
     },
     {
       name: 'John Doe',
       company: 'Google',
-      img: 'https://avatars.githubusercontent.com/u/43177042?s=100&v=4',
+      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-kyle-maltz-dollar-flight-club@1x.webp',
       feedback:
-        'I am a Web Design with a passion for bulding beautiful and functional web application',
+        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
+    },
+    {
+      name: 'Jonny Rodger',
+      company: 'Slack',
+      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-johnny-rodgers-slack@1x.webp',
+      feedback:
+        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
+    },
+    {
+      name: 'Rand FishKin',
+      company: 'SpartToro',
+      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-rand-fishkin-sparktoro@1x.webp',
+      feedback:
+        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
     },
   ];
   const brands = [
     {
-      img: images.javascript,
-      name: 'Javascript',
+      img: images.slack,
+      name: 'slack',
     },
     {
-      img: images.javascript,
-      name: 'Javascript',
+      img: images.slack,
+      name: 'slack',
     },
     {
-      img: images.javascript,
-      name: 'Javascript',
+      img: images.slack,
+      name: 'slack',
     },
     {
-      img: images.javascript,
-      name: 'Javascript',
+      img: images.slack,
+      name: 'slack',
     },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,10 +103,11 @@ const Testimonial = () => {
               <motion.div
                 whileInView={{ opacity: [0, 1] }}
                 transition={{ duration: 0.5, type: 'tween' }}
-              key={Math.random()}>
+                key={Math.random()}
+              >
                 <img src={item.img} alt={item.name} />
-                </motion.div>
-              ))}
+              </motion.div>
+            ))}
           </div>
         </>
       )}

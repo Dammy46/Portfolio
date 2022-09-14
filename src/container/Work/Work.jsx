@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Work.scss';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import { AppWrap } from '../../wrapper';
 import { images } from '../../constants';
+import ReactPaginate from 'react-paginate';
 const Work = () => {
   const works = [
     {
@@ -34,35 +35,80 @@ const Work = () => {
       img: images.calculator,
       codeLink: 'https://github.com/Dammy46/Calculator',
     },
-    // {
-    //   title: 'Cloned website',
-    //   description: 'A basic HTML/CSS/Javascript webpage',
-    //   projectLink: 'https://dammy46.github.io/Interior',
-    //   img: images.interior,
-    //   codeLink: 'https://github.com/Dammy46/Interior',
-    // },
-    // {
-    //   title: 'Design Buddy',
-    //   description: 'React Project',
-    //   projectLink: 'https://d3signbuddy.netlify.app/',
-    //   img: images.designBuddy,
-    //   codeLink: 'https://github.com/Dammy46/design_buddy',
-    // },
-    // {
-    //   title: 'Simon Game',
-    //   description: 'Javascript Project',
-    //   projectLink: 'https://dammy46.github.io/Simon-Game/',
-    //   img: images.simon,
-    //   codeLink: 'https://github.com/Dammy46/Simon-Game',
-    // },
-    // {
-    //   title: 'Note Application',
-    //   description: 'React Project',
-    //   projectLink: 'https://dreamy-dodol-8f2817.netlify.app/',
-    //   img: images.note,
-    //   codeLink: 'https://github.com/Dammy46/Note_demo',
-    // },
+    {
+      title: 'Cloned website',
+      description: 'A basic HTML/CSS/Javascript webpage',
+      projectLink: 'https://dammy46.github.io/Interior',
+      img: images.interior,
+      codeLink: 'https://github.com/Dammy46/Interior',
+    },
+    {
+      title: 'Design Buddy',
+      description: 'React Project',
+      projectLink: 'https://d3signbuddy.netlify.app/',
+      img: images.designBuddy,
+      codeLink: 'https://github.com/Dammy46/design_buddy',
+    },
+    {
+      title: 'Simon Game',
+      description: 'Javascript Project',
+      projectLink: 'https://dammy46.github.io/Simon-Game/',
+      img: images.simon,
+      codeLink: 'https://github.com/Dammy46/Simon-Game',
+    },
+    {
+      title: 'Note Application',
+      description: 'React Project',
+      projectLink: 'https://dreamy-dodol-8f2817.netlify.app/',
+      img: images.note,
+      codeLink: 'https://github.com/Dammy46/Note_demo',
+    },
+    {
+      title: 'Cloned website',
+      description: 'A basic HTML/CSS/Javascript webpage',
+      projectLink: 'https://dammy46.github.io/Interior',
+      img: images.interior,
+      codeLink: 'https://github.com/Dammy46/Interior',
+    },
+    {
+      title: 'Design Buddy',
+      description: 'React Project',
+      projectLink: 'https://d3signbuddy.netlify.app/',
+      img: images.designBuddy,
+      codeLink: 'https://github.com/Dammy46/design_buddy',
+    },
+    {
+      title: 'Simon Game',
+      description: 'Javascript Project',
+      projectLink: 'https://dammy46.github.io/Simon-Game/',
+      img: images.simon,
+      codeLink: 'https://github.com/Dammy46/Simon-Game',
+    },
+    {
+      title: 'Note Application',
+      description: 'React Project',
+      projectLink: 'https://dreamy-dodol-8f2817.netlify.app/',
+      img: images.note,
+      codeLink: 'https://github.com/Dammy46/Note_demo',
+    },
   ];
+
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 3;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(works.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(works.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % works.length;
+    setItemOffset(newOffset);
+  };
+
   return (
     <>
       <h2 className="head-text">
@@ -71,7 +117,7 @@ const Work = () => {
       </h2>
 
       <motion.div className="app__work-portfolio">
-        {works.map((work, index) => (
+        {currentItems.map((work, index) => (
           <div className="app__work-item app__flex" key={`work${index}`}>
             <div className="app__work-img app__flex">
               <img src={work.img} alt="name" />
@@ -84,7 +130,7 @@ const Work = () => {
                 }}
                 className="app__work-hover app__flex"
               >
-                <a href={work.projectLink} >
+                <a href={work.projectLink}>
                   <motion.div
                     whileHover={{ scale: [1, 0.9] }}
                     whileInView={{ scale: [0, 1] }}
@@ -96,7 +142,7 @@ const Work = () => {
                     <AiFillEye />
                   </motion.div>
                 </a>
-                <a href={work.codeLink} >
+                <a href={work.codeLink}>
                   <motion.div
                     whileHover={{ scale: [1, 0.9] }}
                     whileInView={{ scale: [0, 1] }}
@@ -120,6 +166,19 @@ const Work = () => {
           </div>
         ))}
       </motion.div>
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=" >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={2}
+        pageCount={pageCount}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        containerClassName="app__work-paginate"
+        pageClassName="app__work-paginate_li"
+        activeClassName="app__work-paginate_actice"
+      />
     </>
   );
 };
