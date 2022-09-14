@@ -102,7 +102,9 @@ const Work = () => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(works.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(works.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
+
+    //eslint-disable-next-line
+  }, []);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % works.length;
