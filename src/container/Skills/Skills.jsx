@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Skills.scss";
-import { motion, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { AppWrap } from "../../wrapper";
-import { images } from "../../constants";
 import ReactTooltip from "react-tooltip";
 import { client, urlFor } from "../../client";
 const Skills = () => {

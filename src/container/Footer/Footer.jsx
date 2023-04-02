@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 import "./Footer.scss";
 import { images } from "../../constants";
 import { AppWrap } from "../../wrapper";

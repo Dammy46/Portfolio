@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import "./Testimonial.scss";
 import { AppWrap } from "../../wrapper";
-import { images } from "../../constants";
 import { client, urlFor } from "../../client";
 const Testimonial = () => {
   const [testimonials, setTestimoials] = useState([]);
