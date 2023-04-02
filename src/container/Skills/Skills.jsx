@@ -1,95 +1,25 @@
-import React from 'react';
-import './Skills.scss';
-import { motion } from 'framer-motion';
-import { AppWrap } from '../../wrapper';
-import { images } from '../../constants';
-import ReactTooltip from 'react-tooltip';
+import React, { useEffect, useState } from "react";
+import "./Skills.scss";
+import { motion, useSpring } from "framer-motion";
+import { AppWrap } from "../../wrapper";
+import { images } from "../../constants";
+import ReactTooltip from "react-tooltip";
+import { client, urlFor } from "../../client";
 const Skills = () => {
-  const skills = [
-    {
-      name: 'Html',
-      bgColor: '#bc42002b',
-      icon: images.html,
-    },
-    {
-      name: 'Css',
-      bgColor: '#01619a4a',
-      icon: images.css,
-    },
-    {
-      name: 'Javascript',
-      bgColor: '#bb9e054d',
-      icon: images.javascript,
-    },
-    {
-      name: 'Api',
-      bgColor: '#7e878f45',
-      icon: images.api,
-    },
-    {
-      name: 'Redux',
-      bgColor: '#7a54bc4a',
-      icon: images.redux,
-    },
-    {
-      name: 'React',
-      bgColor: '#94dfe045',
-      icon: images.react,
-    },
-    {
-      name: 'Sass',
-      bgColor: '#f0629236',
-      icon: images.sass,
-    },
-  ];
+  const [skills, setSkills] = useState([]);
+  const [experience, setExperiennce] = useState([]);
+  useEffect(() => {
+    const query = '*[_type == "skills"]';
+    const experiencesQuery = '*[_type == "experiences"]';
 
-  const experience = [
-    {
-      year: '2020',
-      work: [
-        {
-          name: 'Senior Product Designer',
-          company: 'AMAZON INC',
-          description: "I've worked as a frontend developer",
-        },
-      ],
-    },
-    {
-      year: '2019',
-      work: [
-        {
-          name: 'Frontend Developer',
-          company: 'GOOGLE',
-          description: "I've worked as a frontend developer",
-        },
-        {
-          name: 'UI/UX Web Designer',
-          company: 'GOOGLE',
-          description: "I've worked as a frontend developer",
-        },
-      ],
-    },
-    {
-      year: '2018',
-      work: [
-        {
-          name: 'Frontend Developer',
-          company: 'Google',
-          description: "I've worked as a frontend developer",
-        },
-        {
-          name: 'Senior WP Front-End Developer',
-          company: 'Amazon',
-          description: "I've worked as a frontend developer",
-        },
-        {
-          name: 'Internship React Mastery',
-          company: 'Amazon',
-          description: "I've worked as a frontend developer",
-        },
-      ],
-    },
-  ];
+    client.fetch(query).then((data) => {
+      setSkills(data);
+    });
+    client.fetch(experiencesQuery).then((data) => {
+      setExperiennce(data);
+    });
+    //eslint-disable-next-line
+  }, []);
   return (
     <>
       <h2 className="head-text">Skills & Experience</h2>
@@ -107,7 +37,7 @@ const Skills = () => {
                 className="app__flex"
                 style={{ backgroundColor: skill.bgColor }}
               >
-                <img src={skill.icon} alt="icon" />
+                <img src={urlFor(skill.icon)} alt="icon" />
               </div>
               <p className="p-text">{skill.name}</p>
             </motion.div>
@@ -116,12 +46,15 @@ const Skills = () => {
 
         <motion.div className="app__skills-exp">
           {experience?.map((item) => (
-            <motion.div className="app__skills-exp-item" key={item.year}>
+            <motion.div
+              className="app__skills-exp-item"
+              key={item.year + Math.round()}
+            >
               <div className="app__skills-exp-year">
                 <p className="bold-text">{item.year}</p>
               </div>
               <motion.div className="app__skills-exp-works">
-                {item.work.map((exp) => (
+                {item.works.map((exp) => (
                   <>
                     <motion.div
                       whileInView={{ opacity: [0, 1] }}
@@ -129,7 +62,7 @@ const Skills = () => {
                       className="app__skills-exp-work"
                       data-tip
                       data-for={exp.name}
-                      key={exp.name}
+                      key={exp.name + exp.company}
                     >
                       <h4 className="bold-text">{exp.name}</h4>
                       <p className="p-text">{exp.company}</p>
@@ -140,7 +73,7 @@ const Skills = () => {
                       arrowColor="#fff"
                       className="skills-tooltip"
                     >
-                      {exp.description}
+                      {exp.desc}
                     </ReactTooltip>
                   </>
                 ))}
@@ -153,4 +86,4 @@ const Skills = () => {
   );
 };
 
-export default AppWrap(Skills, 'skills');
+export default AppWrap(Skills, "skills");

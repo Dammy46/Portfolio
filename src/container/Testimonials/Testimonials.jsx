@@ -1,68 +1,36 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import './Testimonial.scss';
-import { AppWrap } from '../../wrapper';
-import { images } from '../../constants';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import "./Testimonial.scss";
+import { AppWrap } from "../../wrapper";
+import { images } from "../../constants";
+import { client, urlFor } from "../../client";
 const Testimonial = () => {
-  const testimonials = [
-    {
-      name: 'Usman Salami',
-      company: 'Crenet',
-      img: 'https://avatars.githubusercontent.com/u/43177042?s=100&v=4',
-      feedback:
-        'I Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
-    },
-    {
-      name: 'John Doe',
-      company: 'Google',
-      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-kyle-maltz-dollar-flight-club@1x.webp',
-      feedback:
-        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
-    },
-    {
-      name: 'Jonny Rodger',
-      company: 'Slack',
-      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-johnny-rodgers-slack@1x.webp',
-      feedback:
-        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
-    },
-    {
-      name: 'Rand FishKin',
-      company: 'SpartToro',
-      img: 'https://www.typeform.com/templates/images/template-page/testimonials/avatar-rand-fishkin-sparktoro@1x.webp',
-      feedback:
-        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit accusantium voluptatum officiis inventore ipsam eaque atque. Ad eveniet rerum explicabo laboriosam vitae iste illo animi vel! Et impedit adipisci fugit?',
-    },
-  ];
-  const brands = [
-    {
-      img: images.slack,
-      name: 'slack',
-    },
-    {
-      img: images.slack,
-      name: 'slack',
-    },
-    {
-      img: images.slack,
-      name: 'slack',
-    },
-    {
-      img: images.slack,
-      name: 'slack',
-    },
-  ];
+  const [testimonials, setTestimoials] = useState([]);
+  const [brands, setBrands] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleClick = (index) => {
     setCurrentIndex(index);
   };
+
+  useEffect(() => {
+    const query = '*[_type == "testimonials"]';
+    const brandsQuery = '*[_type == "brands"]';
+
+    client.fetch(query).then((data) => {
+      setTestimoials(data);
+    });
+    client.fetch(brandsQuery).then((data) => {
+      setBrands(data);
+    });
+    //eslint-disable-next-line
+  }, []);
   return (
     <>
-      {testimonials.length && (
+      {testimonials.length &&  (
         <>
           <div className="app__testimonial-item app__flex">
-            <img src={testimonials[currentIndex].img} alt="img" />
+            <img src={urlFor(testimonials[currentIndex].imgUrl)} alt="img" />
             <div className="app__testimonial-content">
               <p className="p-text">{testimonials[currentIndex].feedback}</p>
               <div>
@@ -102,17 +70,17 @@ const Testimonial = () => {
             {brands.map((item, index) => (
               <motion.div
                 whileInView={{ opacity: [0, 1] }}
-                transition={{ duration: 0.5, type: 'tween' }}
+                transition={{ duration: 0.5, type: "tween" }}
                 key={Math.random()}
               >
-                <img src={item.img} alt={item.name} />
+                <img src={urlFor(item.imgUrl)} alt={item.name} />
               </motion.div>
             ))}
           </div>
         </>
-      )}
+      ) }
     </>
   );
 };
 
-export default AppWrap(Testimonial, 'testimonial');
+export default AppWrap(Testimonial, "testimonial");

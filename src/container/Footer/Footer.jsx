@@ -1,35 +1,51 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser'
-import './Footer.scss';
-import { images } from '../../constants';
-import { AppWrap } from '../../wrapper';
-import Swal from 'sweetalert2';
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import "./Footer.scss";
+import { images } from "../../constants";
+import { AppWrap } from "../../wrapper";
+import Swal from "sweetalert2";
+import { client } from "../../client";
 const Footer = () => {
-    const form = useRef();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const { name, email, message } = formData;
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const sendEmail = (e) => {
-      e.preventDefault();
+  const handleSubmit = () => {
+    if (name.length && email.length && message.length) {
+      setLoading(true);
+      const contact = {
+        _type: "contact",
+        name: name,
+        email: email,
+        message: message,
+      };
+      client
+        .create(contact)
+        .then(() => {
+          setLoading(false);
+          Swal.fire({
+            icon: "success",
+            text: "Message sent!",
+          });
+          setFormData({ name: "", email: "", message: "" });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      Swal.fire({
+        icon: "error",
+        text: "Enter the fields!",
+      });
+    }
 
-      emailjs
-        .sendForm(
-          'service_chgnc5j',
-          'template_3qxyl1i',
-          form.current,
-          'uJmijd7_EEC8yYPmo'
-        )
-        .then(
-          (result) => {
-            Swal.fire({
-              icon: 'success',
-              text: 'successful',
-            });
-          },
-          (error) => {
-            console.log(error.text);
-          }
-      );
-      e.target.reset();
-    };
+  };
   return (
     <>
       <h2 className="head-text">Take a coffee & chat with me</h2>
@@ -49,29 +65,27 @@ const Footer = () => {
         </div>
       </div>
 
-      <form
-        className="app__footer-form app__flex"
-        ref={form}
-        onSubmit={sendEmail}
-      >
+      <div className="app__footer-form app__flex">
         <div className="app__flex app__inputs">
           <input
             type="text"
-            name="user_name"
+            name="name"
+            value={name}
+            onChange={handleChangeInput}
             className="p-text"
             placeholder="Your Name"
-            required
           />
           <input
             type="email"
-            name="user_name"
+            name="email"
+            value={email}
+            onChange={handleChangeInput}
             className="p-text"
             placeholder="Email Address"
-            required
           />
 
           <select name="subject" id="">
-            <option defaultValue disabled selected>
+            <option defaultValue disabled>
               Subject (optional)
             </option>
             <option value="React">Web Design</option>
@@ -83,16 +97,17 @@ const Footer = () => {
           <textarea
             className="p-text"
             name="message"
+            value={message}
+            onChange={handleChangeInput}
             placeholder="Your message here"
-            required
           />
         </div>
-        <button type="submit" className="p-text">
-          {'Send message'}
+        <button type="button" className="p-text" onClick={handleSubmit}>
+          {loading ? "Sending..." : "Send Message"}
         </button>
-      </form>
+      </div>
     </>
   );
 };
 
-export default AppWrap(Footer, 'contact', 'app__footer');
+export default AppWrap(Footer, "contact", "app__footer");
