@@ -3,8 +3,6 @@ import "./Work.scss";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { AppWrap } from "../../wrapper";
-import { images } from "../../constants";
-import ReactPaginate from "react-paginate";
 import { client, urlFor } from "../../client";
 const Work = () => {
   const [works, setWorks] = useState([]);
