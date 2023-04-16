@@ -25,10 +25,10 @@ const Work = () => {
     setAnimationCard([{ y: 100, opacity: 0 }]);
     setTimeout(() => {
       setAnimationCard([{ y: 0, opacity: 1 }]);
-      if (item === 'All') {
-        setFilterWorks(item)
+      if (item === "All") {
+        setFilterWorks(item);
       } else {
-        setFilterWorks(works.filter((work) => work.tags.includes(item)))
+        setFilterWorks(works.filter((work) => work.tags.includes(item)));
       }
     }, 500);
   };
@@ -62,7 +62,7 @@ const Work = () => {
         {filterWorks.map((work, index) => (
           <div className="app__work-item app__flex" key={`work${index}`}>
             <div className="app__work-img app__flex">
-              <img src={urlFor(work.imgUrl)} alt="name" />
+              <img src={urlFor(work.imgUrl)} alt="name" /> 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
                 transition={{

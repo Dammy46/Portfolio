@@ -87,9 +87,15 @@ const Footer = () => {
             <option defaultValue disabled>
               Subject (optional)
             </option>
-            <option value="React">Web Design</option>
-            <option value="Front-End Development">Front-End Development</option>
-            <option value="Animation">Animation</option>
+            <option value="user-experience">User Experience (UX) Design</option>
+            <option value="search-engine-optimization">
+              Search engine optimization (SEO)
+            </option>
+            <option
+              value="mobile-responsiveness"
+            >
+              Mobile responsiveness
+            </option>
           </select>
         </div>
         <div className="app__flex">
